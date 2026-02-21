@@ -5,7 +5,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "com/example/HospitalManagementAPI/dto")
+@Table(name = "patients")
 public class patients {
 
     @Id
@@ -19,7 +19,7 @@ public class patients {
     private String municipality;
     private String disease;
 
-    @OneToMany(mappedBy = "com/example/HospitalManagementAPI/dto")
+    @OneToMany(mappedBy = "patients")
     private List<appointments>appointments;
 
     public patients(){}
@@ -42,24 +42,55 @@ public class patients {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getGender() {
         return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getPatients_contact_number() {
         return patients_contact_number;
+    }
+
+    public void setPatients_contact_number(String patients_contact_number) {
+        this.patients_contact_number = patients_contact_number;
     }
 
     public String getMunicipality() {
         return municipality;
     }
 
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
+    }
+
     public String getDisease() {
         return disease;
     }
 
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    public List<appointments> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<appointments> appointments) {
+        this.appointments = appointments;
+    }
 }
