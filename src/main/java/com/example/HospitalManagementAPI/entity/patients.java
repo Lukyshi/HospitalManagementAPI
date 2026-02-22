@@ -14,7 +14,7 @@ public class patients {
 
     private String name;
     private String gender;
-    private int age;
+    private Integer age;
     private String patients_contact_number;
     private String municipality;
     private String disease;
@@ -24,7 +24,7 @@ public class patients {
 
     public patients(){}
 
-    public patients(String name, String gender, int age, String patients_contact_number,
+    public patients(String name, String gender, Integer age, String patients_contact_number,
                     String municipality, String disease) {
         this.name = name;
         this.gender = gender;
@@ -54,7 +54,7 @@ public class patients {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 

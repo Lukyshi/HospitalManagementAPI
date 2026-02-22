@@ -3,7 +3,7 @@ package com.example.HospitalManagementAPI.dto.patient;
 public class patientRequest {
     private String name;
     private String gender;
-    private int age;
+    private Integer age;
     private String contact_number;
     private String municipality;
     private String disease;
@@ -26,7 +26,7 @@ public class patientRequest {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 

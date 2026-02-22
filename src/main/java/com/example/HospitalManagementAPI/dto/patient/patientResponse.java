@@ -4,7 +4,7 @@ public class patientResponse {
     private Long id;
     private String name;
     private String gender;
-    private int age;
+    private Integer age;
     private String contact_number;
     private String municipality;
     private String disease;
@@ -13,6 +13,10 @@ public class patientResponse {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -31,7 +35,7 @@ public class patientResponse {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
