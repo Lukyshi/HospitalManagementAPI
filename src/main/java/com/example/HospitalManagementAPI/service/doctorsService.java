@@ -85,7 +85,6 @@ public class doctorsService {
         if(!repository.existsById(id)) {
             throw new RuntimeException("Doctors Not Found" + id);
         }
-
         repository.deleteById(id);
     }
 
