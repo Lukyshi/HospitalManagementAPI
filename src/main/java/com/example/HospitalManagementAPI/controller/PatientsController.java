@@ -2,7 +2,6 @@ package com.example.HospitalManagementAPI.controller;
 
 import com.example.HospitalManagementAPI.dto.patient.patientRequest;
 import com.example.HospitalManagementAPI.dto.patient.patientResponse;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

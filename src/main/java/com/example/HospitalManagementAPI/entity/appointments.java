@@ -21,15 +21,15 @@ public class appointments {
     @JoinColumn(name = "doctors_id")
     private doctors doctors;
 
-    private LocalDate appointment_date;
-    private LocalTime appointment_time;
+    private LocalDate appointmentDate;
+    private LocalTime appointmentTime;
     private String status;
 
     public appointments(){}
 
-    public appointments(LocalDate appointment_date, LocalTime appointment_time, String status) {
-        this.appointment_date = appointment_date;
-        this.appointment_time = appointment_time;
+    public appointments(LocalDate appointmentDate, LocalTime appointmentTime, String status) {
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
         this.status = status;
     }
 
@@ -37,23 +37,47 @@ public class appointments {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public patients getPatients() {
         return patients;
+    }
+
+    public void setPatients(patients patients) {
+        this.patients = patients;
     }
 
     public doctors getDoctors() {
         return doctors;
     }
 
+    public void setDoctors(doctors doctors) {
+        this.doctors = doctors;
+    }
+
     public LocalDate getAppointment_date() {
-        return appointment_date;
+        return appointmentDate;
+    }
+
+    public void setAppointment_date(LocalDate appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 
     public LocalTime getAppointment_time() {
-        return appointment_time;
+        return appointmentTime;
+    }
+
+    public void setAppointment_time(LocalTime appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

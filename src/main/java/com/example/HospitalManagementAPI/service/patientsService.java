@@ -53,7 +53,7 @@ public class patientsService {
 
         //
         return patientsList.stream().map(patients -> {
-            patientResponse response = new patientResponse();
+            patientResponse  response = new patientResponse();
             response.setId(patients.getId());
             response.setName(patients.getName());
             response.setGender(patients.getGender());

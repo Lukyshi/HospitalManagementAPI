@@ -29,19 +29,19 @@ public class appointmentsRequest {
        this.doctors_id = doctors_id;
     }
 
-    private LocalDate setAppointment_date(){
+    public LocalDate getAppointment_date(){
         return appointment_date;
     }
 
-    private void getAppointment_date(LocalDate appointment_date){
+    public void setAppointment_date(LocalDate appointment_date){
         this.appointment_date = appointment_date;
     }
 
-    private LocalTime setAppointment_time(){
+    public LocalTime getAppointment_time(){
         return appointment_time;
     }
 
-    private void setAppointment_time(LocalTime appointment_time){
+    public void setAppointment_time(LocalTime appointment_time){
         this.appointment_time = appointment_time;
     }
 
