@@ -14,6 +14,7 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.lang.module.ResolutionException;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 

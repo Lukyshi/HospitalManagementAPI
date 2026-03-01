@@ -2,6 +2,8 @@ package com.example.HospitalManagementAPI.controller;
 
 import com.example.HospitalManagementAPI.dto.appointments.appointmentsRequest;
 import com.example.HospitalManagementAPI.dto.appointments.appointmentsResponse;
+import com.example.HospitalManagementAPI.entity.appointments;
+import com.example.HospitalManagementAPI.repository.appointmentsRepository;
 import com.example.HospitalManagementAPI.service.appointmentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,13 +35,13 @@ public class AppointmentController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/appointments/{patientId}")
+    @GetMapping("/patients/{patientId}")
     public ResponseEntity<List<appointmentsResponse>> viewPatientById(@PathVariable Long patientId) {
         List<appointmentsResponse> response = service.getAppointmentByPatients(patientId);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/appointments/{doctorId}")
+    @GetMapping("/doctors/{doctorId}")
     public ResponseEntity<List<appointmentsResponse>> viewDoctorsById(@PathVariable Long doctorId) {
         List<appointmentsResponse> response = service.getAppointmentByDoctors(doctorId);
         return ResponseEntity.ok(response);
