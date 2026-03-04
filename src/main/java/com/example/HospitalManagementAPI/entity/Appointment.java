@@ -1,13 +1,21 @@
 package com.example.HospitalManagementAPI.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "appointments")
-public class appointments {
+public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,19 +23,19 @@ public class appointments {
 
     @ManyToOne
     @JoinColumn(name = "patients_id")
-    private patients patients;
+    private Patient patients;
 
     @ManyToOne
     @JoinColumn(name = "doctors_id")
-    private doctors doctors;
+    private Doctor doctors;
 
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
     private String status;
 
-    public appointments(){}
+    public Appointment(){}
 
-    public appointments(LocalDate appointmentDate, LocalTime appointmentTime, String status) {
+    public Appointment(LocalDate appointmentDate, LocalTime appointmentTime, String status) {
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
         this.status = status;
@@ -41,19 +49,19 @@ public class appointments {
         this.id = id;
     }
 
-    public patients getPatients() {
+    public Patient getPatients() {
         return patients;
     }
 
-    public void setPatients(patients patients) {
+    public void setPatients(Patient patients) {
         this.patients = patients;
     }
 
-    public doctors getDoctors() {
+    public Doctor getDoctors() {
         return doctors;
     }
 
-    public void setDoctors(doctors doctors) {
+    public void setDoctors(Doctor doctors) {
         this.doctors = doctors;
     }
 

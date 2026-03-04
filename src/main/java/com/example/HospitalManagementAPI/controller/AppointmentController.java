@@ -1,11 +1,8 @@
 package com.example.HospitalManagementAPI.controller;
 
-import com.example.HospitalManagementAPI.dto.appointments.appointmentsRequest;
-import com.example.HospitalManagementAPI.dto.appointments.appointmentsResponse;
-import com.example.HospitalManagementAPI.entity.appointments;
-import com.example.HospitalManagementAPI.repository.appointmentsRepository;
-import com.example.HospitalManagementAPI.service.appointmentsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.HospitalManagementAPI.dto.appointments.AppointmentsRequest;
+import com.example.HospitalManagementAPI.dto.appointments.AppointmentsResponse;
+import com.example.HospitalManagementAPI.service.AppointmentsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,41 +14,41 @@ import java.util.List;
 @RequestMapping("/api/appointment")
 public class AppointmentController {
 
-    private final appointmentsService service;
+    private final AppointmentsService service;
 
-    public AppointmentController(appointmentsService service) {
+    public AppointmentController(AppointmentsService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<appointmentsResponse> makeAppointment(@RequestBody appointmentsRequest request) {
-        appointmentsResponse response = service.createAppointment(request);
+    public ResponseEntity<AppointmentsResponse> makeAppointment(@RequestBody AppointmentsRequest request) {
+        AppointmentsResponse response = service.createAppointment(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
-    public ResponseEntity<List<appointmentsResponse>> viewAllAppointments() {
-        List<appointmentsResponse> response = service.viewAllAppointments();
+    public ResponseEntity<List<AppointmentsResponse>> viewAllAppointments() {
+        List<AppointmentsResponse> response = service.viewAllAppointments();
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/patients/{patientId}")
-    public ResponseEntity<List<appointmentsResponse>> viewPatientById(@PathVariable Long patientId) {
-        List<appointmentsResponse> response = service.getAppointmentByPatients(patientId);
+    public ResponseEntity<List<AppointmentsResponse>> viewPatientById(@PathVariable Long patientId) {
+        List<AppointmentsResponse> response = service.getAppointmentByPatients(patientId);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/doctors/{doctorId}")
-    public ResponseEntity<List<appointmentsResponse>> viewDoctorsById(@PathVariable Long doctorId) {
-        List<appointmentsResponse> response = service.getAppointmentByDoctors(doctorId);
+    public ResponseEntity<List<AppointmentsResponse>> viewDoctorsById(@PathVariable Long doctorId) {
+        List<AppointmentsResponse> response = service.getAppointmentByDoctors(doctorId);
         return ResponseEntity.ok(response);
     }
 
     @PatchMapping("{id}")
-    public ResponseEntity<appointmentsResponse> updateAppointment
+    public ResponseEntity<AppointmentsResponse> updateAppointment
             (@PathVariable Long id,
-             @RequestBody appointmentsRequest request) {
-        appointmentsResponse responses = service.updateAppointment(id, request);
+             @RequestBody AppointmentsRequest request) {
+        AppointmentsResponse responses = service.updateAppointment(id, request);
         return ResponseEntity.ok(responses);
     }
 

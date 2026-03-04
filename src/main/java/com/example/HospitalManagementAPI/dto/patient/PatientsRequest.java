@@ -1,6 +1,13 @@
 package com.example.HospitalManagementAPI.dto.patient;
 
-public class patientRequest {
+import lombok.*;
+
+
+@Getter // if you have this we dont need to build getter manually
+@Builder
+@Setter // same thing
+@AllArgsConstructor
+public class PatientsRequest {
     private String name;
     private String gender;
     private Integer age;
@@ -8,7 +15,7 @@ public class patientRequest {
     private String municipality;
     private String disease;
 
-    public patientRequest(){}
+    public PatientsRequest(){}
 
     public String getName() {
         return name;

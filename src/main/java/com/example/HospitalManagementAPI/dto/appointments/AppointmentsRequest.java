@@ -1,26 +1,26 @@
 package com.example.HospitalManagementAPI.dto.appointments;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class appointmentsResponse {
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+public class AppointmentsRequest {
 
-    private Long id;
     private Long patients_id;
     private Long doctors_id;
     private LocalDate appointment_date;
     private LocalTime appointment_time;
     private String status;
 
-    public appointmentsResponse(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public AppointmentsRequest(){}
 
     public Long getPatients_id() {
         return patients_id;
@@ -35,7 +35,7 @@ public class appointmentsResponse {
     }
 
     public void setDoctors_id(Long doctors_id) {
-        this.doctors_id = doctors_id;
+       this.doctors_id = doctors_id;
     }
 
     public LocalDate getAppointment_date(){
@@ -61,4 +61,5 @@ public class appointmentsResponse {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }

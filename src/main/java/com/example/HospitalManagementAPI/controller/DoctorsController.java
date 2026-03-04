@@ -1,8 +1,8 @@
 package com.example.HospitalManagementAPI.controller;
 
-import com.example.HospitalManagementAPI.dto.doctors.doctorsRequest;
-import com.example.HospitalManagementAPI.dto.doctors.doctorsResponse;
-import com.example.HospitalManagementAPI.service.doctorsService;
+import com.example.HospitalManagementAPI.dto.doctors.DoctorsRequest;
+import com.example.HospitalManagementAPI.dto.doctors.DoctorsResponse;
+import com.example.HospitalManagementAPI.service.DoctorsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,30 +14,30 @@ import java.util.List;
 @RequestMapping("/api/doctors")
 public class DoctorsController {
 
-    private final doctorsService service;
+    private final DoctorsService service;
 
-    public DoctorsController(doctorsService service) {
+    public DoctorsController(DoctorsService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<doctorsResponse> createDoctors(@RequestBody doctorsRequest request) {
-        doctorsResponse response = service.createDoctor(request);
+    public ResponseEntity<DoctorsResponse> createDoctors(@RequestBody DoctorsRequest request) {
+        DoctorsResponse response = service.createDoctor(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response); // return status 201
     }
 
     // list the doctors
     @GetMapping
-    public ResponseEntity<List<doctorsResponse>> viewAllDoctors() {
-        List<doctorsResponse> responses = service.viewAllDoctors();
+    public ResponseEntity<List<DoctorsResponse>> viewAllDoctors() {
+        List<DoctorsResponse> responses = service.viewAllDoctors();
         return ResponseEntity.ok(responses); // return status 200
     }
 
     @PatchMapping("{id}")
-    public ResponseEntity<doctorsResponse>  response
+    public ResponseEntity<DoctorsResponse>  response
             (@PathVariable Long id,
-             @RequestBody doctorsRequest request) {
-        doctorsResponse response = service.updateDoctor(id, request);
+             @RequestBody DoctorsRequest request) {
+        DoctorsResponse response = service.updateDoctor(id, request);
         return ResponseEntity.ok(response); // return status
     }
 

@@ -1,11 +1,11 @@
 package com.example.HospitalManagementAPI.controller;
 
-import com.example.HospitalManagementAPI.dto.patient.patientRequest;
-import com.example.HospitalManagementAPI.dto.patient.patientResponse;
+import com.example.HospitalManagementAPI.dto.patient.PatientsRequest;
+import com.example.HospitalManagementAPI.dto.patient.PatientResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.HospitalManagementAPI.service.patientsService;
+import com.example.HospitalManagementAPI.service.PatientsService;
 
 import java.util.List;
 
@@ -13,31 +13,31 @@ import java.util.List;
 @RequestMapping("/api/patients")
 public class PatientsController {
 
-    private final patientsService service;
+    private final PatientsService service;
 
-    public PatientsController(patientsService service) {
+    public PatientsController(PatientsService service) {
         this.service = service;
     }
 
     // create patients
     @PostMapping
     // response entity controll the full http status
-    public ResponseEntity<patientResponse> createPatient(@RequestBody patientRequest request) {
-        patientResponse response = service.createPatient(request);
+    public ResponseEntity<PatientResponse> createPatient(@RequestBody PatientsRequest request) {
+        PatientResponse response = service.createPatient(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
-    public ResponseEntity<List<patientResponse>> getAllPatients() {
-        List<patientResponse> patientResponse = service.viewPatientsInfo();
+    public ResponseEntity<List<PatientResponse>> getAllPatients() {
+        List<PatientResponse> patientResponse = service.viewPatientsInfo();
         return ResponseEntity.ok(patientResponse);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<patientResponse> updatePatientById
+    public ResponseEntity<PatientResponse> updatePatientById
             (@PathVariable Long id,
-             @RequestBody patientRequest request) {
-        patientResponse response = service.updatePatientsById(id, request);
+             @RequestBody PatientsRequest request) {
+        PatientResponse response = service.updatePatientsById(id, request);
         return ResponseEntity.ok(response);
     }
 
