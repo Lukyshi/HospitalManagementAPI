@@ -25,8 +25,8 @@ public class AppointmentsMapper {
                 .id(appointments.getId())
                 .patients_id(appointments.getPatients().getId())
                 .doctors_id(appointments.getDoctors ().getId())
-                .appointment_date(appointments.getAppointment_date())
-                .appointment_time(appointments.getAppointment_time())
+                .appointment_date(appointments.getAppointmentDate())
+                .appointment_time(appointments.getAppointmentTime())
                 .status(appointments.getStatus())
                 .build();
     }

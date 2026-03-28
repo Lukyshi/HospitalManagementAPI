@@ -101,11 +101,11 @@ public class AppointmentsService {
         }
 
         if(request.getAppointment_date() != null) {
-            appointments.setAppointment_date(request.getAppointment_date());
+            appointments.setAppointmentDate(request.getAppointment_date());
         }
 
         if(request.getAppointment_time() != null) {
-            appointments.setAppointment_time(request.getAppointment_time());
+            appointments.setAppointmentTime(request.getAppointment_time());
         }
 
         if(request.getDoctors_id() != null
@@ -114,8 +114,8 @@ public class AppointmentsService {
 
             boolean exist = appointmentsRepository.existsByDoctorsAndAppointmentDateAndAppointmentTimeAndIdNot(
                     appointments.getDoctors(),
-                    appointments.getAppointment_date(),
-                    appointments.getAppointment_time(),
+                    appointments.getAppointmentDate(),
+                    appointments.getAppointmentTime(),
                     appointments.getId()
             );
             if(exist) {
