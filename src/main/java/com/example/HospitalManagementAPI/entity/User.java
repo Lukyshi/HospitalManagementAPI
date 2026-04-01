@@ -1,27 +1,25 @@
-package com.example.HospitalManagementAPI.entity;
+    package com.example.HospitalManagementAPI.entity;
 
-import com.example.HospitalManagementAPI.enums.Role;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+    import com.example.HospitalManagementAPI.enums.Role;
+    import jakarta.persistence.*;
+    import lombok.*;
 
 
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Getter
+    @Setter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Entity
+    public class User {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    private String username;
-    private String password;
+        private String username;
+        private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+        @Enumerated(EnumType.STRING)
+        private Role role;
 
-}
+    }

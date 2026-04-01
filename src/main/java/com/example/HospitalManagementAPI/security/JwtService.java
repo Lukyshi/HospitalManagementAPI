@@ -1,7 +1,6 @@
     package com.example.HospitalManagementAPI.security;
 
     // generate and validate toker
-
     import com.example.HospitalManagementAPI.entity.User;
 
     import io.jsonwebtoken.Claims;
