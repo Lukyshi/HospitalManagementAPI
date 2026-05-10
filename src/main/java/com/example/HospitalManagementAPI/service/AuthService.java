@@ -2,26 +2,35 @@ package com.example.HospitalManagementAPI.service;
 
 import com.example.HospitalManagementAPI.dto.auth.AuthResponse;
 import com.example.HospitalManagementAPI.dto.auth.LoginRequest;
+import com.example.HospitalManagementAPI.dto.auth.RefreshTokenRequest;
 import com.example.HospitalManagementAPI.dto.auth.RegisterRequest;
+import com.example.HospitalManagementAPI.entity.RefreshToken;
 import com.example.HospitalManagementAPI.entity.User;
 import com.example.HospitalManagementAPI.enums.Role;
+import com.example.HospitalManagementAPI.repository.RefreshTokenRepository;
 import com.example.HospitalManagementAPI.repository.UserRepository;
-import com.example.HospitalManagementAPI.security.JwtService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class AuthService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private JwtService jwtService;
+    private RefreshTokenService refreshTokenService;
+    private RefreshTokenRepository refreshTokenRepository;
 
 
     public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                       JwtService jwtService) {
+                       JwtService jwtService, RefreshTokenService refreshTokenService,
+                       RefreshTokenRepository refreshTokenRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.refreshTokenService = refreshTokenService;
+        this.refreshTokenRepository = refreshTokenRepository;
     }
 
     // register user
@@ -45,8 +54,28 @@ public class AuthService {
             throw new RuntimeException("Invalid Password");
         }
 
-        String token = jwtService.generateToken(user); // generate jwt
+        String accessToken = jwtService.generateToken(user); // generate jwt
 
-        return new AuthResponse(token);
+        String refreshToken = refreshTokenService.createRefreshToken(user.getUsername())
+                .getToken();
+
+        return new AuthResponse(accessToken, refreshToken);
+    }
+
+    public AuthResponse refreshLogin(String refreshToken) {
+        RefreshToken token = refreshTokenRepository.findByToken(refreshToken)
+                .orElseThrow(() -> new RuntimeException(("Invalid refresh token")));
+
+        if(token.getExpiryDate().before(new Date())) {
+            throw new RuntimeException("Refresh token expired");
+        }
+
+        User user = userRepository.findByUsername(token.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        String newAccessToken = jwtService.generateToken(user);
+
+        return new AuthResponse(newAccessToken, refreshToken);
+
     }
 }

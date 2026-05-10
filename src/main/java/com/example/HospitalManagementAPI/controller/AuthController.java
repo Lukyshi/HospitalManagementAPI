@@ -2,6 +2,7 @@ package com.example.HospitalManagementAPI.controller;
 
 import com.example.HospitalManagementAPI.dto.auth.AuthResponse;
 import com.example.HospitalManagementAPI.dto.auth.LoginRequest;
+import com.example.HospitalManagementAPI.dto.auth.RefreshTokenRequest;
 import com.example.HospitalManagementAPI.dto.auth.RegisterRequest;
 import com.example.HospitalManagementAPI.service.AuthService;
 import org.springframework.http.HttpStatus;
@@ -27,12 +28,19 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
         String message = service.register(registerRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("message", message));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(Map.of("message", message));
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
         AuthResponse response = service.login(loginRequest);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refresh(@RequestBody String refreshToken) {
+        AuthResponse response = service.refreshLogin(refreshToken);
         return ResponseEntity.ok(response);
     }
 }

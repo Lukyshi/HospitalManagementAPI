@@ -21,8 +21,6 @@ public class PatientsController {
     }
 
     // create patients
-
-
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     // response entity controll the full http status

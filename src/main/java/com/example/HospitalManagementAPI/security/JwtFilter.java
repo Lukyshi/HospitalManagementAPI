@@ -6,16 +6,14 @@ package com.example.HospitalManagementAPI.security;
 import com.example.HospitalManagementAPI.entity.User;
 import com.example.HospitalManagementAPI.exception.ResourceNotFoundException;
 import com.example.HospitalManagementAPI.repository.UserRepository;
+import com.example.HospitalManagementAPI.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -48,7 +46,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
 
         if(authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7);
+            token = authHeader.substring(7).trim();
             username = jwtService.getUsername(token);
         }
 

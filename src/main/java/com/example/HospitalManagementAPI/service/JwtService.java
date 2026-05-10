@@ -1,4 +1,4 @@
-    package com.example.HospitalManagementAPI.security;
+    package com.example.HospitalManagementAPI.service;
 
     // generate and validate toker
     import com.example.HospitalManagementAPI.entity.User;
@@ -31,13 +31,17 @@
                     .subject(user.getUsername())
                     .claim("role", user.getRole().name())
                     .issuedAt(new Date())
-                    .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                    .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15))
                     .signWith(getSignInKey())
                     .compact();
         }
 
         public String getUsername(String token) {
-            return extractAllClaims(token).getSubject();
+            try {
+                return extractAllClaims(token).getSubject();
+            } catch (Exception e) {
+                return null;
+            }
         }
 
         private Claims extractAllClaims(String token) {
